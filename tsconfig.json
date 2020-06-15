@@ -3,5 +3,5 @@
     "target": "ES6",
     "module": "commonjs"
   },
-  "exclude": ["node_modules", "ado-azure-sql/node_modules"]
+  "exclude": ["node_modules", "ado-azure-tools/node_modules"]
 }

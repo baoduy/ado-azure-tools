@@ -8,20 +8,20 @@
     "publish-local": "tfx extension publish --no-wait-validation",
     "clean": "rimraf ./*.vsix",
     "compile": "tsc -p .",
-    "install-lib": "cd ado-azure-sql && npm install",
-    "update-lib": "cd ado-azure-sql && npm run install",
+    "ins-sql": "cd azure-sql && npm install",
+    "up-sql": "cd azure-sql && npm run update",
     "test": "npm run compile && mocha tests/_suite.js",
     "update": "ncu -u && npm install"
   },
   "devDependencies": {
     "@types/mocha": "^7.0.2",
-    "@types/node": "^13.9.2",
-    "azure-pipelines-task-lib": "^2.9.3",
+    "@types/node": "^14.0.13",
+    "azure-pipelines-task-lib": "^2.9.5",
     "minimist": ">=1.2.5",
-    "mocha": "^7.1.1",
+    "mocha": "^8.0.1",
     "sync-request": "^6.1.0",
-    "tfx-cli": "^0.7.11",
-    "typescript": "3.8.3"
+    "tfx-cli": "^0.8.1",
+    "typescript": "3.9.5"
   },
   "dependencies": {}
 }

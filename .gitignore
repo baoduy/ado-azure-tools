@@ -26,6 +26,6 @@ bld/
 # Visual Studio 2015 cache/options directory
 .vs/
 
-node_modules
+**/node_modules
 .vscode
 *.vsix
