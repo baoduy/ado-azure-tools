@@ -30,7 +30,7 @@ function run() {
             const url = `https://management.azure.com/subscriptions/${subId}/resourceGroups/${group}/providers/Microsoft.Sql/servers/${server}?api-version=2019-06-01-preview`;
             console.log('endpoint', url);
             const token = yield auth.getToken();
-            yield axios_1.default.patch(url, props, { headers: { Authorization: 'Bearer ' + token } });
+            yield axios_1.default.patch(url, props, { headers: { Authorization: 'Bearer ' + token.accessToken } });
             // console.log(' endpoint.scheme', endpoint.scheme);
             // console.log(' endpoint.parameters', endpoint.parameters);
             // const client = new SqlManagementClient(auth, subId);

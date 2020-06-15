@@ -36,7 +36,7 @@ async function run() {
     console.log('endpoint', url);
 
     const token = await auth.getToken();
-    await axios.patch(url, props, { headers: { Authorization: 'Bearer ' + token } });
+    await axios.patch(url, props, { headers: { Authorization: 'Bearer ' + token.accessToken } });
 
     // console.log(' endpoint.scheme', endpoint.scheme);
     // console.log(' endpoint.parameters', endpoint.parameters);
