@@ -1,7 +1,7 @@
 {
   "manifestVersion": 1,
   "id": "ado-azure-tools",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "name": "Azure Devops Azure Tools.",
   "description": "The helpfull Azure Tools for Azure Devops.",
   "publisher": "Duy",

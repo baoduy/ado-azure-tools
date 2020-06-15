@@ -18,7 +18,9 @@ function run() {
             const token = task.getVariable('system.AccessToken');
             //Inputs
             const sv = task.getInput('azureSubscriptionEndpoint', true);
-            const subId = task.getEndpointDataParameter(sv, 'SubscriptionId', true);
+            const subId = task.getEndpointDataParameter(sv, 'subscriptionId', false);
+            console.log('AzServiceId', sv);
+            console.log('SubId', subId);
             const group = task.getInput('resourceGroupName', true);
             const server = task.getInput('azSqlServerName', true);
             const props = task.getInput('propertiesInput', true);
