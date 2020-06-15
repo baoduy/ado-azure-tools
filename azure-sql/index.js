@@ -9,24 +9,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const task_1 = require("vsts-task-lib/task");
+const task = require("vsts-task-lib/task");
 const axios_1 = require("axios");
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             //variable
-            const token = task_1.getVariable('system.AccessToken');
+            const token = task.getVariable('system.AccessToken');
             //Inputs
-            const subId = task_1.getInput('azureSubscriptionEndpoint', true);
-            const group = task_1.getInput('resourceGroupName', true);
-            const server = task_1.getInput('azSqlServerName', true);
-            const props = task_1.getInput('propertiesInput', true);
+            const sv = task.getInput('azureSubscriptionEndpoint', true);
+            const subId = task.getEndpointDataParameter(sv, 'SubscriptionId', true);
+            const group = task.getInput('resourceGroupName', true);
+            const server = task.getInput('azSqlServerName', true);
+            const props = task.getInput('propertiesInput', true);
             const url = `https://management.azure.com/subscriptions/${subId}/resourceGroups/${group}/providers/Microsoft.Sql/servers/${server}?api-version=2019-06-01-preview`;
+            console.log('endpoint', url);
             yield axios_1.default.patch(url, props, { headers: { Authorization: 'Bearer ' + token } });
-            task_1.setResult(task_1.TaskResult.Succeeded, '', true);
+            task.setResult(task.TaskResult.Succeeded, '', true);
         }
         catch (err) {
-            task_1.setResult(task_1.TaskResult.Failed, err.message);
+            task.setResult(task.TaskResult.Failed, err.message);
         }
     });
 }

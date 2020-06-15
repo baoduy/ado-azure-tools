@@ -1,4 +1,4 @@
-import { TaskResult, getInput, getVariable, setResult } from 'vsts-task-lib/task';
+import * as task from 'vsts-task-lib/task';
 
 import axios from 'axios';
 
@@ -10,20 +10,23 @@ export interface ReplacePattern {
 async function run() {
   try {
     //variable
-    const token = getVariable('system.AccessToken');
+    const token = task.getVariable('system.AccessToken');
     //Inputs
-    const subId = getInput('azureSubscriptionEndpoint', true);
-    const group = getInput('resourceGroupName', true);
-    const server = getInput('azSqlServerName', true);
-    const props = getInput('propertiesInput', true);
+    const sv = task.getInput('azureSubscriptionEndpoint', true);
+    const subId = task.getEndpointDataParameter(sv, 'SubscriptionId', true);
+    
+    const group = task.getInput('resourceGroupName', true);
+    const server = task.getInput('azSqlServerName', true);
+    const props = task.getInput('propertiesInput', true);
 
     const url = `https://management.azure.com/subscriptions/${subId}/resourceGroups/${group}/providers/Microsoft.Sql/servers/${server}?api-version=2019-06-01-preview`;
+    console.log('endpoint', url);
 
     await axios.patch(url, props, { headers: { Authorization: 'Bearer ' + token } });
 
-    setResult(TaskResult.Succeeded, '', true);
+    task.setResult(task.TaskResult.Succeeded, '', true);
   } catch (err) {
-    setResult(TaskResult.Failed, err.message);
+    task.setResult(task.TaskResult.Failed, err.message);
   }
 }
 
