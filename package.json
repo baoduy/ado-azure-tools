@@ -1,5 +1,5 @@
 {
-  "name": "vstsexttask",
+  "name": "ado-azure-tool",
   "private": true,
   "version": "99.99.99",
   "scripts": {
@@ -8,8 +8,8 @@
     "publish-local": "tfx extension publish --no-wait-validation",
     "clean": "rimraf ./*.vsix",
     "compile": "tsc -p .",
-    "install-lib": "cd renameVariables && npm install",
-    "update-lib": "cd renameVariables && npm run install",
+    "install-lib": "cd ado-azure-tools && npm install",
+    "update-lib": "cd ado-azure-tools && npm run install",
     "test": "npm run compile && mocha tests/_suite.js",
     "update": "ncu -u && npm install"
   },

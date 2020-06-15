@@ -1,11 +1,11 @@
 {
   "manifestVersion": 1,
-  "id": "renameVariables",
+  "id": "ado-azure-tools",
   "version": "1.0.7",
-  "name": "Rename variables.",
-  "description": "Rename variables by find and replace characters. Cross platform (work on Windows/Linux/Mac)",
+  "name": "Azure Devops Azure Tools.",
+  "description": "The helpfull Azure Tools for Azure Devops.",
   "publisher": "Duy",
-  "public": true,
+  "public": false,
   "icons": {
     "default": "static/images/icon.png"
   },
@@ -18,7 +18,7 @@
   "categories": ["Azure Pipelines"],
   "content": {
     "license": {
-      "path": "license.md"
+      "path": "LICENSE"
     },
     "details": {
       "path": "README.md"
@@ -26,20 +26,20 @@
   },
   "repository": {
     "type": "git",
-    "uri": "https://github.com/baoduy/azure-devops-rename-variables"
+    "uri": "https://github.com/baoduy/ado-azure-tools"
   },
   "files": [
     {
-      "path": "renameVariables"
+      "path": "tools"
     }
   ],
   "contributions": [
     {
-      "id": "renameVariables",
+      "id": "ado-azure-tools",
       "targets": ["ms.vss-distributed-task.tasks"],
       "type": "ms.vss-distributed-task.task",
       "properties": {
-        "name": "renameVariables"
+        "name": "ado-azure-tools"
       }
     }
   ]

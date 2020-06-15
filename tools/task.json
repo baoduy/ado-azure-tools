@@ -1,6 +1,6 @@
 {
   "id": "70a5ac8e-3360-4c3e-a4b7-95de34bdad49",
-  "name": "renameVariables",
+  "name": "ado-azure-tools",
   "friendlyName": "Rename variables.",
   "description": "Rename variables by replacing the characters in it name. Cross platform (work on Windows/Linux/Mac)",
   "helpMarkDown": "[More Information](https://github.com/baoduy/azure-devops-rename-variables)",

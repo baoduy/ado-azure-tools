@@ -2,10 +2,10 @@ import * as assert from 'assert';
 import * as path from 'path';
 import * as ttm from 'azure-pipelines-task-lib/mock-test';
 
-import replace from '../renameVariables/replace';
+import replace from '../ado-azure-tools/replace';
 
-describe('Sample task tests', function() {
-  before(function() {});
+describe('Sample task tests', function () {
+  before(function () {});
 
   after(() => {});
 
