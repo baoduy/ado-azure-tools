@@ -1,26 +1,26 @@
 {
-  "id": "70a5ac8e-3360-4c3e-a4b7-95de34bdad49",
-  "name": "ado-azure-tools",
-  "friendlyName": "Rename variables.",
-  "description": "Rename variables by replacing the characters in it name. Cross platform (work on Windows/Linux/Mac)",
-  "helpMarkDown": "[More Information](https://github.com/baoduy/azure-devops-rename-variables)",
+  "id": "44370cd9-75f0-46b2-bb13-0530fd391dba",
+  "name": "ado-azure-sql",
+  "friendlyName": "Update Azure SQL Server Properties.",
+  "description": "Update Azure SQL Server Properties.",
+  "helpMarkDown": "[More Information](https://github.com/baoduy/ado-azure-sql)",
   "category": "Utility",
-  "visibility": ["Build", "Release"],
+  "visibility": ["Release"],
   "author": "Duy",
   "version": {
-    "Major": 1,
+    "Major": 0,
     "Minor": 0,
-    "Patch": 3
+    "Patch": 1
   },
-  "instanceNameFormat": "Rename variables",
+  "instanceNameFormat": "Update Azure SQL Server Properties",
   "inputs": [
     {
-      "name": "replaceInput",
+      "name": "propertiesInput",
       "type": "multiLine",
-      "label": "Replaces",
+      "label": "Sql Server Properties (JSON)",
       "defaultValue": "- => : ",
       "required": true,
-      "helpMarkDown": "Place each replace pattern on difference lines. *Ex `-- => :` this will replace all double-dash '--' to Colon ':'*"
+      "helpMarkDown": "Specify the Azure SQL properties that you would like to be updated. Refer [here for details](https://docs.microsoft.com/en-us/rest/api/sql/servers/update) of Properties are supporting by this task."
     }
   ],
   "execution": { "Node": { "target": "index.js" } }

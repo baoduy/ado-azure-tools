@@ -2,7 +2,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 const mock = require('azure-pipelines-task-lib/mock-run');
 const path = require('path');
-const taskPath = path.join(__dirname, '../ado-azure-tools', 'index.js');
+const taskPath = path.join(__dirname, '../ado-azure-sql', 'index.js');
 console.log(taskPath);
 const tmr = new mock.TaskMockRunner(taskPath);
 // tmr.setVariableName('app-0-name', 'val1');

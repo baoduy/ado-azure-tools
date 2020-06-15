@@ -3,7 +3,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const assert = require('assert');
 const path = require('path');
 const ttm = require('azure-pipelines-task-lib/mock-test');
-const replace_1 = require('../ado-azure-tools/replace');
+const replace_1 = require('../ado-azure-sql/replace');
 describe('Sample task tests', function () {
   before(function () {});
   after(() => {});

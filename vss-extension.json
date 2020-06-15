@@ -1,6 +1,6 @@
 {
   "manifestVersion": 1,
-  "id": "ado-azure-tools",
+  "id": "ado-azure-sql",
   "version": "1.0.7",
   "name": "Azure Devops Azure Tools.",
   "description": "The helpfull Azure Tools for Azure Devops.",
@@ -26,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "uri": "https://github.com/baoduy/ado-azure-tools"
+    "uri": "https://github.com/baoduy/ado-azure-sql"
   },
   "files": [
     {
@@ -35,11 +35,11 @@
   ],
   "contributions": [
     {
-      "id": "ado-azure-tools",
+      "id": "ado-azure-sql",
       "targets": ["ms.vss-distributed-task.tasks"],
       "type": "ms.vss-distributed-task.task",
       "properties": {
-        "name": "ado-azure-tools"
+        "name": "ado-azure-sql"
       }
     }
   ]
