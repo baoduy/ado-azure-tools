@@ -46,11 +46,15 @@
       },
       {
         "name": "action",
-        "type": "string",
+        "type": "pickList",
         "label": "Select Action",
         "defaultValue": "start",
         "required": true,
-        "helpMarkDown": "Start/Stop"
+        "helpMarkDown": "Start/Stop",
+        "options": {
+            "Start": "start",
+            "Stop": "stop"
+        }
       }
     ],
     "dataSourceBindings": [
