@@ -6,13 +6,13 @@
     "update": "ncu -u && npm install"
   },
   "dependencies": {
-    "@azure/arm-sql": "^7.0.0",
-    "@azure/ms-rest-nodeauth": "^3.0.3",
+    "@azure/arm-sql": "^7.0.2",
+    "@azure/ms-rest-nodeauth": "^3.0.5",
     "axios": "^0.19.2",
     "vsts-task-lib": "^2.7.0"
   },
   "devDependencies": {
-    "@types/node": "^14.0.13",
+    "@types/node": "^14.0.27",
     "@types/q": "1.5.4",
     "minimist": ">=1.2.5"
   }

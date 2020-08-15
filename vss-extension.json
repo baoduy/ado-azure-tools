@@ -1,7 +1,7 @@
 {
   "manifestVersion": 1,
   "id": "ado-azure-tools",
-  "version": "0.0.15",
+  "version": "0.1.1",
   "name": "Azure Devops Azure Tools.",
   "description": "The helpfull Azure Tools for Azure Devops.",
   "publisher": "Duy",
@@ -28,7 +28,7 @@
     "type": "git",
     "uri": "https://github.com/baoduy/ado-azure-tools"
   },
-  "files": [{ "path": "azure-sql" }],
+  "files": [{ "path": "azure-sql" }, { "path": "azure-streamjob-control" }],
   "contributions": [
     {
       "id": "ado-azure-sql",
@@ -36,6 +36,14 @@
       "type": "ms.vss-distributed-task.task",
       "properties": {
         "name": "azure-sql"
+      }
+    },
+    {
+      "id": "ado-azure-streamjob-control",
+      "targets": ["ms.vss-distributed-task.tasks"],
+      "type": "ms.vss-distributed-task.task",
+      "properties": {
+        "name": "azure-streamjob-control"
       }
     }
   ]
