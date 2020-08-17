@@ -18,8 +18,8 @@ function run() {
             //Inputs
             const sv = task.getInput('azureSubscriptionEndpoint', true);
             const subId = task.getEndpointDataParameter(sv, 'subscriptionId', false);
-            console.log('AzServiceId', sv);
-            console.log('SubId', subId);
+            // console.log('AzServiceId', sv);
+            // console.log('SubId', subId);
             const group = task.getInput('resourceGroupName', true);
             const streamJobName = task.getInput('azStreamJobName', true);
             const action = task.getInput('action', true);
