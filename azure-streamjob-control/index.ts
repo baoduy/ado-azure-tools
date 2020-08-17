@@ -35,7 +35,6 @@ async function run() {
       { headers: { Authorization: 'Bearer ' + token.accessToken } },
     ).then(res => {
       console.log(res);
-
     })
       .catch(error => {
         if (error.response && ERROR_STATUS_CODES.includes(error.response.status)) {
@@ -43,8 +42,6 @@ async function run() {
           task.setResult(task.TaskResult.Failed, error.message);
         }
       })
-
-
 
     task.setResult(task.TaskResult.Succeeded, '', true);
   } catch (err) {
