@@ -2,6 +2,8 @@ import * as msRestNodeAuth from '@azure/ms-rest-nodeauth';
 import * as task from 'vsts-task-lib/task';
 import axios from 'axios';
 
+const ERROR_STATUS_CODES = [400, 500, 502, 409];
+
 async function run() {
   try {
     //Inputs
@@ -27,18 +29,26 @@ async function run() {
     console.log('endpoint', url);
 
     const token = await auth.getToken();
-    const res = await axios.post(
+    axios.post(
       url,
       {},
       { headers: { Authorization: 'Bearer ' + token.accessToken } },
-    );
+    ).then(res => {
+      console.log(res);
 
-    console.log(res);
-    
+    })
+      .catch(error => {
+        if (error.response && ERROR_STATUS_CODES.includes(error.response.status)) {
+          console.log(error.response.status);
+          task.setResult(task.TaskResult.Failed, error.message);
+        }
+      })
+
+
 
     task.setResult(task.TaskResult.Succeeded, '', true);
   } catch (err) {
-
+    
     console.log(`Failed to send req: ${JSON.stringify(err)}`);
     task.setResult(task.TaskResult.Failed, err.message);
   }
