@@ -1,18 +1,18 @@
 {
   "id": "842d67cc-3e31-46d4-9b5b-2ec784364885",
   "name": "ado-azure-streamjob-control",
-  "friendlyName": "Start/Stop Az Stream Job.",
-  "description": "Start/Stop Az Stream Job",
+  "friendlyName": "Start and Stop Az Stream Job.",
+  "description": "Start and Stop Az Stream Job",
   "helpMarkDown": "[More Information](https://github.com/baoduy/ado-azure-tools)",
   "category": "Utility",
-  "visibility": ["Release"],
+  "visibility": ["Build", "Release"],
   "author": "Duy",
   "version": {
     "Major": 0,
     "Minor": 1,
-    "Patch": 0
+    "Patch": 2
   },
-  "instanceNameFormat": "Start/Stop Az Stream Job",
+  "instanceNameFormat": "Start and Stop Az Stream Job",
   "inputs": [
     {
       "name": "azureSubscriptionEndpoint",
