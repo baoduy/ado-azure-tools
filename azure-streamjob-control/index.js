@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const msRestNodeAuth = require("@azure/ms-rest-nodeauth");
 const task = require("vsts-task-lib/task");
 const axios_1 = require("axios");
+const ERROR_STATUS_CODES = [400, 500, 502, 409];
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -28,8 +29,15 @@ function run() {
             const url = `https://management.azure.com/subscriptions/${subId}/resourceGroups/${group}/providers/Microsoft.StreamAnalytics/streamingjobs/${streamJobName}/${action}?api-version=2015-10-01`;
             console.log('endpoint', url);
             const token = yield auth.getToken();
-            const res = yield axios_1.default.post(url, {}, { headers: { Authorization: 'Bearer ' + token.accessToken } });
-            console.log(res);
+            axios_1.default.post(url, {}, { headers: { Authorization: 'Bearer ' + token.accessToken } }).then(res => {
+                console.log(res);
+            })
+                .catch(error => {
+                if (error.response && ERROR_STATUS_CODES.includes(error.response.status)) {
+                    console.log(error.response.status);
+                    task.setResult(task.TaskResult.Failed, error.message);
+                }
+            });
             task.setResult(task.TaskResult.Succeeded, '', true);
         }
         catch (err) {
