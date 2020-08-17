@@ -22,17 +22,19 @@ function run() {
             // console.log('SubId', subId);
             const group = task.getInput('resourceGroupName', true);
             const streamJobName = task.getInput('azStreamJobName', true);
-            const action = task.getInput('action', true);
+            const action = task.getInput('action', true).toLowerCase();
             const endpoint = task.getEndpointAuthorization(sv, false);
             const auth = yield msRestNodeAuth.loginWithServicePrincipalSecret(endpoint.parameters['serviceprincipalid'], endpoint.parameters['serviceprincipalkey'], endpoint.parameters['tenantid']);
             const url = `https://management.azure.com/subscriptions/${subId}/resourceGroups/${group}/
                     providers/Microsoft.StreamAnalytics/streamingjobs/${streamJobName}/${action}?api-version=2015-10-01`;
             console.log('endpoint', url);
             const token = yield auth.getToken();
-            yield axios_1.default.post(url, {}, { headers: { Authorization: 'Bearer ' + token.accessToken } });
+            const res = yield axios_1.default.post(url, {}, { headers: { Authorization: 'Bearer ' + token.accessToken } });
+            console.log(res);
             task.setResult(task.TaskResult.Succeeded, '', true);
         }
         catch (err) {
+            console.log(`Failed to send req: ${JSON.stringify(err)}`);
             task.setResult(task.TaskResult.Failed, err.message);
         }
     });
