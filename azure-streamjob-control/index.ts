@@ -22,8 +22,7 @@ async function run() {
       endpoint.parameters['tenantid'],
     );
 
-    const url = `https://management.azure.com/subscriptions/${subId}/resourceGroups/${group}/
-                    providers/Microsoft.StreamAnalytics/streamingjobs/${streamJobName}/${action}?api-version=2015-10-01`;
+    const url = `https://management.azure.com/subscriptions/${subId}/resourceGroups/${group}/providers/Microsoft.StreamAnalytics/streamingjobs/${streamJobName}/${action}?api-version=2015-10-01`;
 
     console.log('endpoint', url);
 
