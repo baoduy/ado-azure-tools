@@ -13,7 +13,7 @@ async function run() {
 
     const group = task.getInput('resourceGroupName', true);
     const streamJobName = task.getInput('azStreamJobName', true);
-    const action = task.getInput('action', true);
+    const action = task.getInput('action', true).toLowerCase();
 
     const endpoint = task.getEndpointAuthorization(sv, false);
     const auth = await msRestNodeAuth.loginWithServicePrincipalSecret(
@@ -27,14 +27,19 @@ async function run() {
     console.log('endpoint', url);
 
     const token = await auth.getToken();
-    await axios.post(
+    const res = await axios.post(
       url,
       {},
       { headers: { Authorization: 'Bearer ' + token.accessToken } },
     );
 
+    console.log(res);
+    
+
     task.setResult(task.TaskResult.Succeeded, '', true);
   } catch (err) {
+
+    console.log(`Failed to send req: ${JSON.stringify(err)}`);
     task.setResult(task.TaskResult.Failed, err.message);
   }
 }
