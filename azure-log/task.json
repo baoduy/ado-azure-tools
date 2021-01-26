@@ -10,7 +10,7 @@
   "version": {
     "Major": 0,
     "Minor": 1,
-    "Patch": 1
+    "Patch": 2
   },
   "instanceNameFormat": "Purge Azure Log Workspace Data",
   "inputs": [
@@ -73,7 +73,7 @@
     {
       "target": "resourceGroupName",
       "endpointId": "$(azureSubscriptionEndpoint)",
-      "endpointUrl": "{{{endpoint.url}}}/subscriptions/{{{endpoint.subscriptionId}}}/providers/Microsoft.OperationalInsights/workspaces?api-version=2019-06-01-preview",
+      "endpointUrl": "{{{endpoint.url}}}/subscriptions/{{{endpoint.subscriptionId}}}/providers/Microsoft.OperationalInsights/workspaces?api-version=2020-08-01",
       "resultSelector": "jsonpath:$.value[*]",
       "resultTemplate": "{{{ #extractResource id resourcegroups}}}"
     },
