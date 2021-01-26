@@ -11,14 +11,9 @@ export interface ReplacePattern {
 
 async function run() {
   try {
-    //variable
-
     //Inputs
     const sv = task.getInput('azureSubscriptionEndpoint', true);
     const subId = task.getEndpointDataParameter(sv, 'subscriptionId', false);
-
-    // console.log('AzServiceId', sv);
-    // console.log('SubId', subId);
 
     const group = task.getInput('resourceGroupName', true);
     const logName = task.getInput('azLogWPName', true);
@@ -29,14 +24,14 @@ async function run() {
 
     switch (duration) {
       case '1Month':
-        date = new dayjs.Dayjs().add(-1, 'month').format('YYYY-MM-DD');
+        date = dayjs().add(-1, 'month').format('YYYY-MM-DD');
         break;
       case '1Week':
-        date = new dayjs.Dayjs().add(-1, 'week').format('YYYY-MM-DD');
+        date = dayjs().add(-1, 'week').format('YYYY-MM-DD');
         break;
       case '1Day':
       default:
-        date = new dayjs.Dayjs().add(-1, 'day').format('YYYY-MM-DD');
+        date = dayjs().add(-1, 'day').format('YYYY-MM-DD');
         break;
     }
 
@@ -48,11 +43,12 @@ async function run() {
     );
 
     const url = `https://management.azure.com/subscriptions/${subId}/resourceGroups/${group}/providers/Microsoft.OperationalInsights/workspaces/${logName}/purge?api-version=2020-08-01`;
-    console.log('endpoint', url);
 
     const token = await auth.getToken();
 
-    await axios.patch(
+    console.log('posting the request:', { url, date });
+
+    await axios.post(
       url,
       {
         table,
@@ -69,14 +65,9 @@ async function run() {
       }
     );
 
-    // console.log(' endpoint.scheme', endpoint.scheme);
-    // console.log(' endpoint.parameters', endpoint.parameters);
-
-    // const client = new SqlManagementClient(auth, subId);
-    // await client.servers.update(group, server, JSON.parse(props));
-
     task.setResult(task.TaskResult.Succeeded, '', true);
   } catch (err) {
+    console.log('Error:', err);
     task.setResult(task.TaskResult.Failed, err.message);
   }
 }

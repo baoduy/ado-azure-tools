@@ -8,9 +8,9 @@
   "visibility": ["Build", "Release"],
   "author": "Duy",
   "version": {
-    "Major": 0,
-    "Minor": 1,
-    "Patch": 5
+    "Major": 1,
+    "Minor": 0,
+    "Patch": 0
   },
   "instanceNameFormat": "Start and Stop Az Stream Job",
   "inputs": [
