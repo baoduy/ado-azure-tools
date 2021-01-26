@@ -2,7 +2,11 @@
 
 ## SQL Tool
 
-Allows to update SQL Server properties.
+Allows updating SQL Server properties.
+
+## Log Workspace Tool
+
+Allows purging old data of Azure Log Workspace.
 
 ## Usage
 
