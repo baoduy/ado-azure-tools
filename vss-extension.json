@@ -1,9 +1,9 @@
 {
   "manifestVersion": 1,
   "id": "ado-azure-tools",
-  "version": "0.1.7",
-  "name": "Azure Devops Azure Tools.",
-  "description": "The helpfull Azure Tools for Azure Devops.",
+  "version": "0.1.9",
+  "name": "Azure DevOps Azure Tools.",
+  "description": "The helpful Azure Tools for Azure DevOps.",
   "publisher": "Duy",
   "public": true,
   "icons": {
@@ -28,8 +28,20 @@
     "type": "git",
     "uri": "https://github.com/baoduy/ado-azure-tools"
   },
-  "files": [{ "path": "azure-sql" }, { "path": "azure-streamjob-control" }],
+  "files": [
+    { "path": "azure-log" },
+    { "path": "azure-sql" },
+    { "path": "azure-streamjob-control" }
+  ],
   "contributions": [
+    {
+      "id": "ado-azure-log",
+      "targets": ["ms.vss-distributed-task.tasks"],
+      "type": "ms.vss-distributed-task.task",
+      "properties": {
+        "name": "azure-log"
+      }
+    },
     {
       "id": "ado-azure-sql",
       "targets": ["ms.vss-distributed-task.tasks"],

@@ -12,37 +12,57 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const msRestNodeAuth = require("@azure/ms-rest-nodeauth");
 const task = require("vsts-task-lib/task");
 const axios_1 = require("axios");
-const ERROR_STATUS_CODES = [400, 500, 502, 409];
+const dayjs = require("dayjs");
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            //variable
             //Inputs
             const sv = task.getInput('azureSubscriptionEndpoint', true);
             const subId = task.getEndpointDataParameter(sv, 'subscriptionId', false);
+            // console.log('AzServiceId', sv);
+            // console.log('SubId', subId);
             const group = task.getInput('resourceGroupName', true);
-            const streamJobName = task.getInput('azStreamJobName', true);
-            const action = task.getInput('action', true).toLowerCase();
+            const logName = task.getInput('azLogWPName', true);
+            const table = task.getInput('azLogTbName', true);
+            const duration = task.getInput('azLogWPDuration', true);
+            let date = '';
+            switch (duration) {
+                case '1Month':
+                    date = new dayjs.Dayjs().add(-1, 'month').format('YYYY-MM-DD');
+                    break;
+                case '1Week':
+                    date = new dayjs.Dayjs().add(-1, 'week').format('YYYY-MM-DD');
+                    break;
+                case '1Day':
+                default:
+                    date = new dayjs.Dayjs().add(-1, 'day').format('YYYY-MM-DD');
+                    break;
+            }
             const endpoint = task.getEndpointAuthorization(sv, false);
             const auth = yield msRestNodeAuth.loginWithServicePrincipalSecret(endpoint.parameters['serviceprincipalid'], endpoint.parameters['serviceprincipalkey'], endpoint.parameters['tenantid']);
-            const url = `https://management.azure.com/subscriptions/${subId}/resourceGroups/${group}/providers/Microsoft.StreamAnalytics/streamingjobs/${streamJobName}/${action}?api-version=2015-10-01`;
+            const url = `https://management.azure.com/subscriptions/${subId}/resourceGroups/${group}/providers/Microsoft.OperationalInsights/workspaces/${logName}/purge?api-version=2020-08-01`;
             console.log('endpoint', url);
             const token = yield auth.getToken();
-            axios_1.default
-                .post(url, {}, { headers: { Authorization: 'Bearer ' + token.accessToken } })
-                .then((res) => {
-                console.log(res);
-            })
-                .catch((error) => {
-                if (error.response &&
-                    ERROR_STATUS_CODES.includes(error.response.status)) {
-                    console.log(error.response.status);
-                    task.setResult(task.TaskResult.Failed, error.message);
-                }
+            yield axios_1.default.patch(url, {
+                table,
+                filters: [
+                    {
+                        column: 'TimeGenerated',
+                        operator: '<=',
+                        value: date,
+                    },
+                ],
+            }, {
+                headers: { Authorization: 'Bearer ' + token.accessToken },
             });
+            // console.log(' endpoint.scheme', endpoint.scheme);
+            // console.log(' endpoint.parameters', endpoint.parameters);
+            // const client = new SqlManagementClient(auth, subId);
+            // await client.servers.update(group, server, JSON.parse(props));
             task.setResult(task.TaskResult.Succeeded, '', true);
         }
         catch (err) {
-            console.log(`Failed to send req: ${JSON.stringify(err)}`);
             task.setResult(task.TaskResult.Failed, err.message);
         }
     });
