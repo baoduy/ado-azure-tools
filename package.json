@@ -3,10 +3,10 @@
   "private": true,
   "version": "99.99.99",
   "scripts": {
-    "package": "npm run clean  && npm run compile  && tfx extension create --manifest-globs --rev-version",
+    "package": "npm run install-sub && npm run compile && npm run clean && tfx extension create --manifest-globs --rev-version",
     "publish": "tfx extension publish --manifest-globs --no-wait-validation --token $TOKEN",
     "publish-local": "tfx extension publish --manifest-globs --no-wait-validation",
-    "clean": "rimraf ./*.vsix",
+    "clean": "rimraf ./*.vsix && rimraf ./azure-*/node_modules",
     "compile": "tsc -p .",
     "install-sub": "node tools/install-all.js",
     "update-sub": "node tools/update-all.js",
